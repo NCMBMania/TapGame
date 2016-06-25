@@ -15,6 +15,11 @@
             var client_key = "f94dc609df08dfb5d87f99a2b52a4704e6838db9bc11dbcf29c677aa088d51cc";
             var ncmb = new NCMB(application_key, client_key);
             
+            var user = ncmb.User.getCurrentUser();
+            if (user !== null) {
+                location.href = "./game.html";
+            }
+            
             // ログイン・新規登録処理
             $("form").on("submit", function() {
                var username = $("#username").val();
@@ -24,7 +29,8 @@
                ncmb.User.login(username, password)
                .then(function() {
                    // ログイン成功
-                   alert("ログイン成功");
+                   // alert("ログイン成功");
+                   location.href = "./game.html";
                })
                .catch(function() {
                    // ログイン失敗
@@ -36,7 +42,8 @@
                    user.signUpByAccount()
                    .then(function() {
                        // ログイン成功
-                       alert("新規登録&ログイン成功");
+                       // alert("新規登録&ログイン成功");
+                       location.href = "./game.html";
                    })
                })
                return false;
