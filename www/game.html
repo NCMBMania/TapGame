@@ -42,6 +42,9 @@
             var r;
             var timerId;
             var isPlaying = false;
+            var target;
+            var score;
+            var Rank = ncmb.DataStore("Rank");
             
             // スタート画面
             ctx.font = "normal 28px Verdana";
@@ -54,10 +57,29 @@
             $("#mycanvas").on("click", function() {
                 if (isPlaying === true) {
                     // ゲームを止める
+                    score = 100 - Math.abs(target - r);
+                    // alert("target:"+target+" r:"+r+" score:"+score);
                     clearTimeout(timerId);
+                    
+                    // スコアの描画
+                    ctx.fillText("You :" + r, centerX, centerY);
+                    ctx.font = "bold 35px Verdana";
+                    ctx.fillText("Score :" + score, centerX, centerY + 50);
+                    ctx.font = "normal 28px Verdana";
+                    
+                    // スコアの保存
+                    var rank = new Rank;
+                    rank.set("username", user.userName);
+                    rank.set("score", score);
+                    var acl = new ncmb.Acl();
+                    acl.setPublicReadAccess(true);
+                    acl.setUserWriteAccess(user, true);
+                    rank.set("acl", acl);
+                    rank.save();
                 } else {
                     // ゲームを始める
                     r = 0;
+                    target = Math.floor(Math.random() * 121) + 80;
                     drawCircle();
                 }
                 isPlaying = !isPlaying;
@@ -74,6 +96,10 @@
                 ctx.beginPath();
                 ctx.arc(centerX, centerY, r, 0, Math.PI * 2, false);
                 ctx.fill();
+                
+                // ターゲットの描画
+                ctx.fillStyle = "#FFFFFF";
+                ctx.fillText("Target: " + target, centerX, centerY - 35);
                 
                 r++;
                 timerId = setTimeout(function() {
