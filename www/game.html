@@ -59,6 +59,12 @@
                     score = 100 - Math.abs(target - r);
                     // alert("target:"+target+" r:"+r+" score:"+score);
                     clearTimeout(timerId);
+                    
+                    // スコアの描画
+                    ctx.fillText("You :" + r, centerX, centerY);
+                    ctx.font = "bold 35px Verdana";
+                    ctx.fillText("Score :" + score, centerX, centerY + 50);
+                    ctx.font = "normal 28px Verdana";
                 } else {
                     // ゲームを始める
                     r = 0;
@@ -79,6 +85,10 @@
                 ctx.beginPath();
                 ctx.arc(centerX, centerY, r, 0, Math.PI * 2, false);
                 ctx.fill();
+                
+                // ターゲットの描画
+                ctx.fillStyle = "#FFFFFF";
+                ctx.fillText("Target: " + target, centerX, centerY - 35);
                 
                 r++;
                 timerId = setTimeout(function() {
