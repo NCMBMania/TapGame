@@ -39,6 +39,8 @@
             // 変数
             var centerX = canvas.width / 2;
             var centerY = canvas.height / 2;
+            var r;
+            var timerId;
             
             // スタート画面
             ctx.font = "normal 28px Verdana";
@@ -46,6 +48,20 @@
             ctx.fillStyle = "#FFFFFF";
             
             ctx.fillText("Stop at Target!", centerX, centerY);
+            
+            // イベントの設定
+            $("#mycanvas").on("click", function() {
+                r = 0;
+                drawCircle();
+            });
+            
+            // 円を描く処理
+            function drawCircle() {
+                // クリア
+                ctx.fillStyle = "#BBDEFB";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+            }
         });
     </script>
     <style>
