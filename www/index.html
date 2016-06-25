@@ -10,8 +10,30 @@
     <script src="js/ncmb.2.1.1.min.js"></script>
     <script>
     </script>
+    <style>
+        body {
+            background-color: #BBDEFB;
+            padding-top: 20px;
+            font-family: Verdana, sans-serif;
+        }
+        form {
+            padding: 30px auto;
+            text-align: center;
+        }
+        input {
+            border-radius: 5px;
+            padding: 7px;
+            margin-bottom: 10px;
+            width: 200px;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
-	<p>こんにちは</p>
+	<form>
+        <input type="text" id="username" placeholder="User name" />
+        <input type="password" id="password" placeholder="Password" />
+        <input type="submit" value="Register/Login" />
+    </form>
 </body>
 </html>
