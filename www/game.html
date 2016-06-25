@@ -17,6 +17,20 @@
             
             var user = ncmb.User.getCurrentUser();
             
+            // ログインチェック
+            if (user === null) {
+                location.href = "./index.html";
+            } else {
+                $("#username").text(user.userName + "(Logout)");
+            }
+            
+            // ログアウト
+            $("#username").on("click", function() {
+                ncmb.User.logout()
+                .then(function() {
+                    location.href = "./index.html";
+                })
+            })
         });
     </script>
     <style>
@@ -29,6 +43,7 @@
     </style>
 </head>
 <body>
+    <div id="username"></div>
 </body>
 </html>
 
