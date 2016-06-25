@@ -41,6 +41,7 @@
             var centerY = canvas.height / 2;
             var r;
             var timerId;
+            var isPlaying = false;
             
             // スタート画面
             ctx.font = "normal 28px Verdana";
@@ -51,8 +52,15 @@
             
             // イベントの設定
             $("#mycanvas").on("click", function() {
-                r = 0;
-                drawCircle();
+                if (isPlaying === true) {
+                    // ゲームを止める
+                    clearTimeout(timerId);
+                } else {
+                    // ゲームを始める
+                    r = 0;
+                    drawCircle();
+                }
+                isPlaying = !isPlaying;
             });
             
             // 円を描く処理
