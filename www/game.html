@@ -30,7 +30,22 @@
                 .then(function() {
                     location.href = "./index.html";
                 })
-            })
+            });
+            
+            // canvasの設定
+            var canvas = document.getElementById("mycanvas");
+            var ctx = canvas.getContext("2d");
+            
+            // 変数
+            var centerX = canvas.width / 2;
+            var centerY = canvas.height / 2;
+            
+            // スタート画面
+            ctx.font = "normal 28px Verdana";
+            ctx.textAlign = "center";
+            ctx.fillStyle = "#FFFFFF";
+            
+            ctx.fillText("Stop at Target!", centerX, centerY);
         });
     </script>
     <style>
@@ -40,10 +55,14 @@
             font-family: Verdana, sans-serif;
             text-align: center;
         }
+        #mycanvas {
+            margin: 10px auto;
+        }
     </style>
 </head>
 <body>
     <div id="username"></div>
+    <canvas id="mycanvas" width="300" height="300"></canvas>
 </body>
 </html>
 
