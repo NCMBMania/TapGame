@@ -61,6 +61,16 @@
                 ctx.fillStyle = "#BBDEFB";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 
+                // 円を描く
+                ctx.fillStyle = "#1976D2";
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, r, 0, Math.PI * 2, false);
+                ctx.fill();
+                
+                r++;
+                timerId = setTimeout(function() {
+                   drawCircle(); 
+                }, 12);
             }
         });
     </script>
