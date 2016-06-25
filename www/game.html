@@ -113,7 +113,24 @@
             
             // ランキング表示
             function showRanking() {
-                
+                Rank.limit(5)
+                .order("score", true)
+                .fetchAll()
+                .then(function(ary) {
+                    $("ul").empty();
+                    $.each(ary, function(i, rank) {
+                        $("<li>").text(
+                            [
+                                i + 1,
+                                "位 ",
+                                rank.get("username"),
+                                "さん：",
+                                rank.get("score"),
+                                "点"
+                            ].join("")
+                        ).appendTo("ul");
+                    });
+                });
             }
         });
     </script>
