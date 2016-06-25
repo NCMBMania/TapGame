@@ -52,6 +52,7 @@
             ctx.fillStyle = "#FFFFFF";
             
             ctx.fillText("Stop at Target!", centerX, centerY);
+            showRanking();
             
             // イベントの設定
             $("#mycanvas").on("click", function() {
@@ -75,7 +76,10 @@
                     acl.setPublicReadAccess(true);
                     acl.setUserWriteAccess(user, true);
                     rank.set("acl", acl);
-                    rank.save();
+                    rank.save()
+                    .then(function() {
+                        showRanking();
+                    })
                 } else {
                     // ゲームを始める
                     r = 0;
@@ -106,6 +110,11 @@
                    drawCircle(); 
                 }, 12);
             }
+            
+            // ランキング表示
+            function showRanking() {
+                
+            }
         });
     </script>
     <style>
@@ -118,11 +127,27 @@
         #mycanvas {
             margin: 10px auto;
         }
+        h1 {
+            font-size: 25px;
+            padding-bottom: 7px;
+            border-bottom: 1px solid #000;
+        }
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        ul > li {
+            padding-bottom: 7px;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
     <div id="username"></div>
     <canvas id="mycanvas" width="300" height="300"></canvas>
+    <h1>Ranking</h1>
+    <ul></ul>
 </body>
 </html>
 
