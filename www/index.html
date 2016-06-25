@@ -42,8 +42,12 @@
                    user.signUpByAccount()
                    .then(function() {
                        // ログイン成功
-                       // alert("新規登録&ログイン成功");
-                       location.href = "./game.html";
+                       ncmb.User.login(username, password)
+                       .then(function() {
+                           // ログイン成功
+                           // alert("ログイン成功");
+                           location.href = "./game.html";
+                       })
                    })
                })
                return false;
